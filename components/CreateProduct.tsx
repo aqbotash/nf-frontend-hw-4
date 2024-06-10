@@ -1,17 +1,6 @@
-'use client';
-
+'use client'
 import { useState } from 'react';
 import { Button } from './ui/button';
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from './ui/dialog';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { useCreateProduct } from '@/hooks/useCreateProduct';
@@ -37,7 +26,7 @@ export type Rating = {
   count: number;
 };
 
-export const CreateProduct = () => {
+const CreateProduct = () => {
   const [description, setDescription] = useState<string>('');
   const [category, setCategory] = useState<string>('');
   const [title, setTitle] = useState<string>('');
@@ -75,123 +64,93 @@ export const CreateProduct = () => {
   };
 
   return (
-    <>
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button size="lg" className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-            Create Product
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-lg p-6 bg-white">
-          <DialogHeader>
-            <DialogTitle className="text-xl font-semibold">Create Product</DialogTitle>
-            <DialogDescription className="text-sm text-gray-500">
-              Fill in the product details.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-1 sm:grid-cols-4 items-center gap-4">
-              <Label htmlFor="title" className="text-sm sm:text-right">
-                Title
-              </Label>
-              <Input
-                id="title"
-                value={title}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
-                className="col-span-3 p-2 border rounded"
-              />
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-4 items-center gap-4">
-              <Label htmlFor="price" className="text-sm sm:text-right">
-                Price
-              </Label>
-              <Input
-                id="price"
-                type="number"
-                value={price}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPrice(parseFloat(e.target.value) || 0)}
-                className="col-span-3 p-2 border rounded"
-              />
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-4 items-center gap-4">
-              <Label htmlFor="description" className="text-sm sm:text-right">
-                Description
-              </Label>
-              <Input
-                id="description"
-                value={description}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDescription(e.target.value)}
-                className="col-span-3 p-2 border rounded"
-              />
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-4 items-center gap-4">
-              <Label htmlFor="category" className="text-sm sm:text-right">
-                Category
-              </Label>
-              <Input
-                id="category"
-                value={category}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCategory(e.target.value)}
-                className="col-span-3 p-2 border rounded"
-              />
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-4 items-center gap-4">
-              <Label htmlFor="images" className="text-sm sm:text-right">
-                Images
-              </Label>
-              <div className="col-span-3">
-                <FileUploader onUploadSuccess={handleFileUploadSuccess} />
-                <div className="flex flex-wrap mt-2">
-                  {images.map((image, index) => (
-                    <img
-                      key={index}
-                      src={image.url}
-                      alt={`Image ${index + 1}`}
-                      style={{ width: '100px', height: '100px', margin: '5px' }}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-4 items-center gap-4">
-              <Label htmlFor="rate" className="text-sm sm:text-right">
-                Rating (Rate)
-              </Label>
-              <Input
-                id="rate"
-                type="number"
-                value={rate}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRate(parseFloat(e.target.value) || 0)}
-                className="col-span-3 p-2 border rounded"
-              />
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-4 items-center gap-4">
-              <Label htmlFor="count" className="text-sm sm:text-right">
-                Rating (Count)
-              </Label>
-              <Input
-                id="count"
-                type="number"
-                value={count}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCount(parseFloat(e.target.value) || 0)}
-                className="col-span-3 p-2 border rounded"
-              />
+    <div className="max-w-lg mx-auto p-6 bg-white">
+      <h1 className="text-2xl font-semibold mb-4">Create Product</h1>
+      <div className="grid gap-4 py-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-4">
+          <Label htmlFor="title">Title</Label>
+          <Input
+            id="title"
+            value={title}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)}
+            className="p-2 border rounded"
+          />
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-4">
+          <Label htmlFor="price">Price</Label>
+          <Input
+            id="price"
+            type="number"
+            value={price}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPrice(parseFloat(e.target.value) || 0)}
+            className="p-2 border rounded"
+          />
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-4">
+          <Label htmlFor="description">Description</Label>
+          <Input
+            id="description"
+            value={description}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDescription(e.target.value)}
+            className="p-2 border rounded"
+          />
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-4">
+          <Label htmlFor="category">Category</Label>
+          <Input
+            id="category"
+            value={category}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCategory(e.target.value)}
+            className="p-2 border rounded"
+          />
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-4">
+          <Label htmlFor="images">Images</Label>
+          <div>
+            <FileUploader onUploadSuccess={handleFileUploadSuccess} />
+            <div className="flex flex-wrap mt-2">
+              {images.map((image, index) => (
+                <img
+                  key={index}
+                  src={image.url}
+                  alt={`Image ${index + 1}`}
+                  style={{ width: '100px', height: '100px', margin: '5px' }}
+                />
+              ))}
             </div>
           </div>
-          <DialogFooter>
-            <DialogClose asChild>
-              <Button
-                type="submit"
-                onClick={onSubmit}
-                disabled={createProductMutation.status !== 'idle' && createProductMutation.status !== 'success'}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-              >
-                {createProductMutation.status === 'idle' || createProductMutation.status === 'success' ? 'Submit' : 'Submitting...'}
-              </Button>
-            </DialogClose>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-    </>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-4">
+          <Label htmlFor="rate">Rating (Rate)</Label>
+          <Input
+            id="rate"
+            type="number"
+            value={rate}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRate(parseFloat(e.target.value) || 0)}
+            className="p-2 border rounded"
+          />
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-4">
+          <Label htmlFor="count">Rating (Count)</Label>
+          <Input
+            id="count"
+            type="number"
+            value={count}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCount(parseFloat(e.target.value) || 0)}
+            className="p-2 border rounded"
+          />
+        </div>
+        <Button
+          type="submit"
+          onClick={onSubmit}
+          disabled={createProductMutation.status !== 'idle' && createProductMutation.status !== 'success'}
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+        >
+          {createProductMutation.status === 'idle' || createProductMutation.status === 'success' ? 'Submit' : 'Submitting...'}
+        </Button>
+      </div>
+    </div>
   );
 };
+
+export default CreateProduct;
